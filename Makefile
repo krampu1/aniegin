@@ -8,5 +8,17 @@ CXXFLAGS := -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef       \
 		 -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel          \
 		 -Wtype-limits -Wwrite-strings -D_DEBUG -D_EJUDGE_CLIENT_SIDE
 
-all:
-	g++ $(CXXFLAGS) main.cpp string/string.cpp IO/io.cpp sort/sort.cpp
+all: main.o string/string.o IO/io.o sort/sort.o
+	g++ $(CXXFLAGS) main.o string/string.o IO/io.o sort/sort.o -o sortfile.exe
+
+main.o: main.cpp
+	g++ $(CXXFLAGS) main.cpp -c -o main.o
+
+string/string.o : string/string.cpp
+	g++ $(CXXFLAGS) string/string.cpp -c -o string/string.o
+
+IO/io.o: IO/io.cpp
+	g++ $(CXXFLAGS) IO/io.cpp -c -o IO/io.o
+
+sort/sort.o: sort/sort.cpp
+	g++ $(CXXFLAGS) sort/sort.cpp -c -o sort/sort.o
