@@ -1,19 +1,18 @@
-#include "string/string.h"
+#include "IO/io.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "resources/const.h"
+#include ""
+
+const char *filein  = "resources/gamlet.txt";
+const char *fileout = "resources/gamletout.txt";
 
 int main() {
-    FILE *fp;
-    fp = fopen("aboba.txt", "r");
+    char *text[MAX_NUMBER_STRINGS] = {0};
 
-    printf("%p", fp);
+    int num_string = input_strings(filein, &text);
 
-    char *s = (char*)std::calloc(10000, sizeof(char));
-    while (s = KR_fgets(s, 10000, fp)) {
-        if (s == nullptr) {
-            break;
-        }
+    sort()
 
-        printf("%s\n", s);
-    }
+    output_strings(fileout, &text);
 }

@@ -134,7 +134,7 @@ char * KR_fgets(char *s, int n, FILE *stream) {
     while (--n > 0 && (c = getc(stream)) != EOF)
         if ((*cs++ = (char)c) == '\n' ) break;
 
-    if (cs != s) {
+    if (cs != s && *(cs-1) == '\n') {
         *(--cs) = '\0';
     }
     else {
