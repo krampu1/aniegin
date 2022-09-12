@@ -1,3 +1,4 @@
+#include "io.h"
 #include "../string/string.h"
 #include <stdio.h>
 #include <stdlib.h>

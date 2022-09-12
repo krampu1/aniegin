@@ -41,7 +41,7 @@ unsigned int KR_strlen (char *s) {
     char   *p = s;
     while (*p) p++;
 
-    return p - s;
+    return (unsigned int)(p - s);
 }
 
 unsigned int KR_strlen (const char *s) {
@@ -50,7 +50,7 @@ unsigned int KR_strlen (const char *s) {
     const char *p = s;
     while (    *p) p++;
 
-    return p - s;
+    return (unsigned int)(p - s);
 }
 
 void KR_strcpy(char *s, char *ct) {
@@ -164,4 +164,57 @@ char * KR_strdup(const char *s) {
     KR_strcpy(p, s);
 
     return p;
+}
+
+bool KR_strcmp(char *s1, char *s2) {
+    assert(s1 != nullptr);
+    assert(s2 != nullptr);
+
+    int i = -1; // (-1)++ = 0 -> first element
+    do {
+        i++;
+        if (s1[i] < s2[i]) {
+            return true;
+        }
+        else if (s1[i] > s2[i]) {
+            return false;
+        }
+    } while (s1[i] != 0 && s2[i] != 0);
+    return true;
+}
+
+bool is_letter(char ch) {
+    for (char i : "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM\0") {
+        if (ch == i) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool KR_strcmp_letonly(char *s1, char *s2) {
+    assert(s1 != nullptr);
+    assert(s2 != nullptr);
+    
+    do {
+        while (!is_letter(*s1)) s1++;
+        while (!is_letter(*s2)) s2++;
+
+        if (*s1 < *s2) {
+            return true;
+        }
+        else if (*s1 > *s2) {
+            return false;
+        }
+    } while (*s1++ != 0 && *s2++ != 0);
+    return true;
+}
+
+void KR_strswap(char **s1, char **s2) {
+    assert(s1 != nullptr);
+    assert(s1 != nullptr);
+
+    char *b = *s1;
+    *s1 = *s2;
+    *s2 = b;
 }
