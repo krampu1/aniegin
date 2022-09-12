@@ -184,12 +184,9 @@ bool KR_strcmp(char *s1, char *s2) {
 }
 
 bool is_letter(char ch) {
-    for (char i : "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM\0") {
-        if (ch == i) {
-            return true;
-        }
-    }
-    return false;
+    return (('a' <= ch && ch <= 'z')
+             || ('A' <= ch && ch <= 'Z')
+             || ch == 0); 
 }
 
 bool KR_strcmp_letonly(char *s1, char *s2) {
